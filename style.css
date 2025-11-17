@@ -6,34 +6,48 @@ html{
     background-position: center;
     z-index: 1;
     background-color: rgb(100,144,57);
-  
-  }
-  body{
+
+}
+body{
     font-family: 'Indie Flower', cursive;
     text-align: center;
     font-size: 24px;
-  }
-  img{
+}
+img{
     -webkit-user-drag:none;
-  }
+}
 
-  .infotxt{
+button{
+    background-color:rgb(236, 225, 122);
+    width: 350px;
+    height: 50px;
+    align-self: Center;
+    font-family: 'Indie Flower', cursive;
+    font-size: 30px;
+    font-weight: bold;
+    padding-bottom: 0px;
+}
+button:hover{
+    background-color: rgb(240, 233, 168);
+}
+
+.infotxt{
     position: absolute;
     left: 10px;
     top: 10px;
   
-  }
-  .resetbutton{
-      margin-top: 0px;
-      width: 80px;
-      height: 20px;
-      font-size: 10px;
-      top: 370px;
-      left: 10px;
-      position: inherit;
-  }
+}
+.resetbutton{
+    margin-top: 0px;
+    width: 80px;
+    height: 20px;
+    font-size: 10px;
+    top: 370px;
+    left: 10px;
+    position: inherit;
+}
 
-  .ChickenButton{
+.ChickenButton{
     width: 475px;
     height: 492px;
     left: 0px;
@@ -46,9 +60,10 @@ html{
   position: absolute;
   height: 546px;
   width: 527px;
-  right: -264px;
+  left: -265px;
   z-index: 3;
   background-color: red;
+  color: red;
   opacity: 0%;
   visibility: visible;
 }
@@ -63,23 +78,11 @@ html{
   width: 500px;
     height: 546px;
 }
-  button{
-    background-color:rgb(236, 225, 122);
-    width: 350px;
-    height: 50px;
-    align-self: Center;
-    font-family: 'Indie Flower', cursive;
-    font-size: 30px;
-    font-weight: bold;
-    padding-bottom: 0px;
-  }
-  button:hover{
-    background-color: rgb(240, 233, 168);
-  }
-  .reset{
-      width: 50px;
-      height: 25px;
-      align-self:center;
-      font-size: 14px;
-      
-  }
+
+.reset{
+    width: 50px;
+    height: 25px;
+    align-self:center;
+    font-size: 14px;
+    
+}
