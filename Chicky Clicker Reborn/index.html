@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cookie Clicker Clone</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    
+
+    <!-- Left Panel -->
+    
+<!-- Left Panel -->
+<div class="left-panel">
+    <div class="store-header"><span>Item</span><span>Cost</span><span>Discount</span></div>
+    <div class="store-items">
+        <div class="store-item" onclick="buyDiscount('Dealer')">
+            Dealer Discount <span id="DealerDiscountCost">100</span><span id="DealerDiscountLevel">0%</span>
+        </div>
+        <div class="store-item" onclick="buyDiscount('Breeder')">
+            Breeder Discount <span id="BreederDiscountCost">500</span><span id="BreederDiscountLevel">0%</span>
+        </div>
+        <div class="store-item" onclick="buyDiscount('Market')">
+            Market Discount <span id="MarketDiscountCost">2000</span><span id="MarketDiscountLevel">0%</span>
+        </div>
+        <div class="store-item" onclick="buyDiscount('Ranch')">
+            Ranch Discount <span id="RanchDiscountCost">5000</span><span id="RanchDiscountLevel">0%</span>
+        </div>
+        <div class="store-item" onclick="buyDiscount('Mine')">
+            Mine Discount <span id="MineDiscountCost">20000</span><span id="MineDiscountLevel">0%</span>
+        </div>
+        <div class="store-item" onclick="buyDiscount('Factory')">
+            Factory Discount <span id="FactoryDiscountCost">100000</span><span id="FactoryDiscountLevel">0%</span>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Middle Panel -->
+    <div class="middle-panel">
+        <div class="chicken" onclick="incrementScore()">
+        </div>
+        <div class="stats">
+            <h1 id="ChickenCount">0 Chickens</h1>
+            <p id="ChickenRate">per second: 0</p>
+        </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="right-panel">
+        <div class="store-header"><span>Item</span><span>Cost</span><span>Amount</span></div>
+        <div class="store-items">
+            <div class="store-item" onclick="buyUpgrade('Dealer')">Dealers<span id="DealerCost">15</span><span id="DealerCount">0</span></div>
+            <div class="store-item" onclick="buyUpgrade('Breeder')">Breeders<span id="BreederCost">0</span><span id="BreederCount">0</span></div>
+            <div class="store-item" onclick="buyUpgrade('Market')">Markets<span id="MarketCost">0</span><span id="MarketCount">0</span></div>
+            <div class="store-item" onclick="buyUpgrade('Ranch')">Ranches<span id="RanchCost">0</span><span id="RanchCount">0</span></div>
+            <div class="store-item" onclick="buyUpgrade('Mine')">Mines<span id="MineCost">0</span><span id="MineCount">0</span></div>
+            <div class="store-item" onclick="killCookies()">Factories<span id="FactoryCost">0</span><span id="FactoryCount">0</span></div>
+        </div>
+    </div>
+</div>
+
+<script src="Shop.js"></script>
+<script src="Upgrades.js"></script>
+</body>
+</html>
