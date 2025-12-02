@@ -17,7 +17,7 @@ body {
     padding: 10px;
 }
 
-/* Left Column: Cookie + Stats */
+/* Left Column: Chicken + Stats */
 .middle-panel {
     background: fff;
     border-radius: 8px;
@@ -126,4 +126,5 @@ body {
 
 .store-item:hover {
     background: #ddd;
+
 }
