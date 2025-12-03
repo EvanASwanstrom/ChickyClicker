@@ -3,6 +3,21 @@
 var DealerDiscountLevel = parseInt(localStorage.getItem('DealerDiscountLevel')) || 0;
 var DealerDiscountCost = parseInt(localStorage.getItem('DealerDiscountCost')) || 100;
 
+var BreederDiscountLevel = parseInt(localStorage.getItem('BreederDiscountLevel')) || 0;
+var BreederDiscountCost = parseInt(localStorage.getItem('BreederDiscountCost')) || 500;
+
+var MarketDiscountLevel = parseInt(localStorage.getItem('MarketDiscountLevel')) || 0;;
+var MarketDiscountCost = parseInt(localStorage.getItem('MarketDiscountCost')) || 2000;
+
+var RanchDiscountLevel = parseInt(localStorage.getItem('RanchDiscountLevel')) || 0;
+var RanchDiscountCost = parseInt(localStorage.getItem('RanchDiscountCost')) || 5000;
+
+var MineDiscountLevel = parseInt(localStorage.getItem('MineDiscountLevel')) || 0;
+var MineDiscountCost = parseInt(localStorage.getItem('MineDiscountCost')) || 20000;
+
+var FactoryDiscountLevel = parseInt(localStorage.getItem('FactoryDiscountLevel')) || 0;
+var FactoryDiscountCost = parseInt(localStorage.getItem('FactoryDiscountCost')) || 100000;
+
 
 function calculateCost(baseCost, count, discountLevel) {
     let discountMultiplier = 1 - (discountLevel * 0.05); // 5% per discount level
