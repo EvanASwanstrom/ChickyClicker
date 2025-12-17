@@ -1,5 +1,4 @@
 // Using Decimal from break_infinity.js for arbitrary precision
-// Add to HTML: <script src="https://cdn.jsdelivr.net/npm/break_infinity.js"></script>
 
 // Load values or set defaults
 var ChickenCount = new Decimal(localStorage.getItem('ChickenCount') || 0);
