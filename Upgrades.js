@@ -29,6 +29,23 @@ function updateShopUI(name, count, cost) {
     document.getElementById(name + 'Cost').textContent = cost;
     document.getElementById('ChickenCount').textContent = Math.floor(ChickenCount) + ' Chickens';
     document.getElementById('ChickenRate').textContent = 'per second: ' + ChickenRate.toFixed(1);
+
+
+}
+
+function updateUpgradeUI() {
+    document.getElementById('DealerDiscountCost').textContent = DealerDiscountCost;
+    document.getElementById('DealerDiscountLevel').textContent = DealerDiscountLevel * 5 + '%';
+    document.getElementById('BreederDiscountCost').textContent = BreederDiscountCost;
+    document.getElementById('BreederDiscountLevel').textContent = BreederDiscountLevel * 5 + '%';
+    document.getElementById('MarketDiscountCost').textContent = MarketDiscountCost;
+    document.getElementById('MarketDiscountLevel').textContent = MarketDiscountLevel * 5 + '%';
+    document.getElementById('RanchDiscountCost').textContent = RanchDiscountCost;
+    document.getElementById('RanchDiscountLevel').textContent = RanchDiscountLevel * 5 + '%';
+    document.getElementById('MineDiscountCost').textContent = MineDiscountCost;
+    document.getElementById('MineDiscountLevel').textContent = MineDiscountLevel * 5 + '%';
+    document.getElementById('FactoryDiscountCost').textContent = FactoryDiscountCost;
+    document.getElementById('FactoryDiscountLevel').textContent = FactoryDiscountLevel * 5 + '%';
 }
 
 function saveGame() {
