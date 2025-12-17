@@ -32,6 +32,7 @@ function updateShopUI(name, count, cost) {
 
 
 }
+// testing
 
 function updateUpgradeUI() {
     document.getElementById('DealerDiscountCost').textContent = DealerDiscountCost;
