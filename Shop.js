@@ -203,6 +203,13 @@ function buyDiscount(name) {
     
     if (ChickenCount.lt(cost)) return;
 
+    if  (window[name + 'DiscountLevel'] >= 19){
+        //set discount level to 19 and cost to Max
+        window[name + 'DiscountLevel'] = 19;
+        document.getElementById(name + 'DiscountCost').textContent = 'Max';
+        return;
+    }
+
     ChickenCount = ChickenCount.minus(cost);
     window[name + 'DiscountLevel']++; 
     
