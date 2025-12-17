@@ -102,7 +102,7 @@ function updateUpgradeUI() {
     document.getElementById('RanchDiscountCost').textContent = formatNumber(getRanchDiscountCost());
     document.getElementById('RanchDiscountLevel').textContent = RanchDiscountLevel * 5 + '%';
     
-    document.getElementById('MineDiscountCost').textContent = formatNumber(getMineCostDiscount());
+    document.getElementById('MineDiscountCost').textContent = formatNumber(getMineDiscountCost());
     document.getElementById('MineDiscountLevel').textContent = MineDiscountLevel * 5 + '%';
     
     document.getElementById('FactoryDiscountCost').textContent = formatNumber(getFactoryDiscountCost());
