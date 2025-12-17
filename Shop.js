@@ -39,7 +39,7 @@ function formatNumber(decimal) {
 function calculateCost(baseCost, count, discountLevel) {
     let base = new Decimal(baseCost);
     let multiplier = Decimal.pow(1.5, count);
-    let discount = 1 - (discountLevel * 0.05);
+    let discount = 1 - Math.min(discountLevel * 0.05, 0.95); // Max 95% discount
     return base.times(multiplier).times(discount).floor();
 }
 
@@ -205,7 +205,7 @@ function buyDiscount(name) {
     if (ChickenCount.lt(cost)) return;
 
     ChickenCount = ChickenCount.minus(cost);
-    window[name + 'DiscountLevel']++;
+    window[name + 'DiscountLevel']++; 
     
     const discountLevel = window[name + 'DiscountLevel'];
     const count = window[name + 'Count'];
