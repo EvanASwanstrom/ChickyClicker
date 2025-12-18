@@ -157,6 +157,8 @@ function saveGame() {
     localStorage.setItem('RanchDiscountLevel', RanchDiscountLevel);
     localStorage.setItem('MineDiscountLevel', MineDiscountLevel);
     localStorage.setItem('FactoryDiscountLevel', FactoryDiscountLevel);
+
+    
 }
 
 // Buy upgrade

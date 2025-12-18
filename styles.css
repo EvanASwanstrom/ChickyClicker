@@ -17,9 +17,17 @@ body {
     padding: 10px;
 }
 
+.leaderboard-container {
+    text-align: center;
+    background: rgb(236,225,122);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
 /* Left Column: Chicken + Stats */
 .middle-panel {
-    background: fff;
     border-radius: 8px;
     display: flex;
     flex-direction: column;

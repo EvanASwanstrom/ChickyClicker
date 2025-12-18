@@ -34,6 +34,18 @@
             Factory Discount <span id="FactoryDiscountCost">100000</span><span id="FactoryDiscountLevel">0%</span>
         </div>
     </div>
+
+
+    <div class="leaderboard-container">
+        <h2>Global Leaderboard</h2>
+            <div id="leaderboard">
+                <p>Loading...</p>
+            </div>
+        <div>
+            <button onclick="submitScoreManually()">Update Score</button>
+            <button onclick="changePlayerName()">Change Name</button>
+        </div>
+    </div>
 </div>
 
 
@@ -60,8 +72,34 @@
         </div>
     </div>
 </div>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+
+<!-- Your Firebase config -->
+<script>
+  const firebaseConfig = {
+  apiKey: "AIzaSyAS4WIt4ZB0YOQBjsY-aIb0uEb1CPkTVFE",
+  authDomain: "chickyclicker.firebaseapp.com",
+  projectId: "chickyclicker",
+  storageBucket: "chickyclicker.firebasestorage.app",
+  messagingSenderId: "489761255908",
+  appId: "1:489761255908:web:46ef314a19c0a177dad7f1",
+  measurementId: "G-7LHWJ517DV"
+};
+  
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
+</script>
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/break_infinity.js"></script>
+
 <script src="Shop.js"></script>
+<script src="leaderboard.js"></script>
 
 </body>
 </html>
