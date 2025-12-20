@@ -1,8 +1,8 @@
 // Firebase Leaderboard for Chicken Clicker
 
-console.log('Leaderboard.js loaded');
-console.log('Firebase available?', typeof firebase !== 'undefined');
-console.log('Database available?', typeof firebase?.database !== 'undefined');
+// console.log('Leaderboard.js loaded');
+// console.log('Firebase available?', typeof firebase !== 'undefined');
+// console.log('Database available?', typeof firebase?.database !== 'undefined');
 
 
 let playerId = localStorage.getItem('playerId');
@@ -11,9 +11,9 @@ if (!playerId) {
     // First time player - generate a unique ID
     playerId = 'player_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
     localStorage.setItem('playerId', playerId);
-    console.log('New player ID created');
+    // // console.log('New player ID created');
 } else {
-    console.log('Existing player ID loaded');
+    // // console.log('Existing player ID found:', playerId);
 }
 
 
@@ -27,7 +27,7 @@ function promptForName() {
         // Clean the name: max 20 chars, remove special characters
         playerName = name.trim().substring(0, 20).replace(/[^a-zA-Z0-9 _-]/g, '');
         localStorage.setItem('playerName', playerName);
-        console.log('Player name set to:', playerName);
+        // // console.log('Player name set to:', playerName);
     } else {
         // User cancelled or entered nothing
         playerName = 'Anonymous';
@@ -63,7 +63,7 @@ function submitScore() {
             .ref('leaderboard/' + playerId)
             .set(scoreData)
             .then(() => {
-                console.log('Score submitted successfully!');
+                // console.log('Score submitted successfully!');
             })
             .catch((error) => {
                 console.error('Error submitting score:', error);
@@ -78,7 +78,7 @@ function submitScore() {
 
 
 function loadLeaderboard() {
-    console.log('Loading leaderboard...');
+    // console.log('Loading leaderboard...');
     
     // Get reference to the leaderboard in Firebase
     const leaderboardRef = firebase.database().ref('leaderboard');
@@ -104,8 +104,8 @@ function loadLeaderboard() {
         
         // Sort by chicken count (highest first)
         entries.sort((a, b) => {
-            const aChickens = new Decimal(a.chickens);
-            const bChickens = new Decimal(b.chickens);
+            const aChickens = new Decimal(a.rate);
+            const bChickens = new Decimal(b.rate);
             
             // Compare using Decimal library (handles huge numbers)
             if (bChickens.gt(aChickens)) return 1;  // b is greater
@@ -114,11 +114,11 @@ function loadLeaderboard() {
         });
         
         
-        // Take only top 10
-        const top10 = entries.slice(0, 10);
+        // Take only top 5
+        // const top5 = entries.slice(0, 5);
         
         // Update the HTML display
-        updateLeaderboardUI(top10);
+        updateLeaderboardUI(entries);
     });
 }
 
@@ -139,8 +139,8 @@ function updateLeaderboardUI(entries) {
     
     // Build the HTML
     let html = '<ol>';
-    
-    entries.forEach((entry, index) => {
+    //loops 5 times
+    entries.slice(0, 5).forEach((entry, index) => {
         // Format the numbers for display
         const chickens = formatNumber(new Decimal(entry.chickens));
         const rate = new Decimal(entry.rate).toFixed(1);
@@ -157,12 +157,27 @@ function updateLeaderboardUI(entries) {
         
         
     });
+
+    // shows slot 6 as current player and rank
+    const currentPlayerIndex = entries.findIndex(e => e.playerId === playerId);
+     console.log(entries);
+    if (currentPlayerIndex >= 5) {
+        const currentPlayer = entries[currentPlayerIndex];
+        const chickens = formatNumber(new Decimal(currentPlayer.chickens));
+        const rate = new Decimal(currentPlayer.rate).toFixed(1);
+        const actualRank = currentPlayerIndex + 1; // Convert index to rank (1-based)
+        html += `<li value="${actualRank}" style="font-weight: bold; color: green;">
+            <span class="leaderboard-name">${escapeHtml(currentPlayer.name)}</span> - 
+            <span class="leaderboard-chickens">${chickens} chickens</span> - 
+            <span class="leaderboard-rate">(${rate} chickens/sec)</span>
+        </li>`;
+    }
     
     html += '</ol>';
     
     // Insert into the page
     container.innerHTML = html;
-    console.log('Leaderboard UI updated');
+    // console.log('Leaderboard UI updated');
 }
 
 function escapeHtml(text) {

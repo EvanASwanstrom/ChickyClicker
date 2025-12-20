@@ -128,7 +128,7 @@ gameLoop();
 
 // Manual click
 function incrementScore() {
-    ChickenCount = ChickenCount.plus(1);
+    ChickenCount = ChickenCount.plus(ChickenRate.dividedBy(20)); // 5% of rate per click
     document.getElementById('ChickenCount').textContent = formatNumber(ChickenCount) + ' Chickens';
     saveGame();
 }
