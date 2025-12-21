@@ -141,7 +141,7 @@ function showFloatingText(x, y, text) {
 
 // Manual click
 function incrementScore(event) {
-    const gain = ChickenRate.dividedBy(20).plus(1); //5% of rate per click
+    const gain = (ChickenRate.dividedBy(10)).plus(1); //5% of rate per click
     ChickenCount = ChickenCount.plus(gain);
     document.getElementById('ChickenCount').textContent = formatNumber(ChickenCount) + ' Chickens';
     
@@ -162,7 +162,9 @@ function incrementScore(event) {
                 y = window.innerHeight / 2;
             }
         }
-        showFloatingText(x, y, `+${formatNumber(gain)}`);
+        showFloatingText(x, y, '+' + formatNumber(gain));
+
+
     } catch (_) {}
 
     saveGame();

@@ -160,7 +160,7 @@ function updateLeaderboardUI(entries) {
 
     // shows slot 6 as current player and rank
     const currentPlayerIndex = entries.findIndex(e => e.playerId === playerId);
-     console.log(entries);
+    //console.log(entries);
     if (currentPlayerIndex >= 5) {
         const currentPlayer = entries[currentPlayerIndex];
         const chickens = formatNumber(new Decimal(currentPlayer.chickens));
