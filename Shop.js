@@ -126,10 +126,45 @@ function gameLoop() {
 }
 gameLoop();
 
+// Spawn floating "+gain" text near click position
+function showFloatingText(x, y, text) {
+    const el = document.createElement('div');
+    el.className = 'float-text';
+    el.textContent = text;
+    el.style.left = `${x}px`;
+    el.style.top = `${y}px`;
+    document.body.appendChild(el);
+    el.addEventListener('animationend', () => {
+        el.remove();
+    });
+}
+
 // Manual click
-function incrementScore() {
-    ChickenCount = ChickenCount.plus(ChickenRate.dividedBy(20)); // 5% of rate per click
+function incrementScore(event) {
+    const gain = ChickenRate.dividedBy(20).plus(1); //5% of rate per click
+    ChickenCount = ChickenCount.plus(gain);
     document.getElementById('ChickenCount').textContent = formatNumber(ChickenCount) + ' Chickens';
+    
+    // Show floating text at click position (fallback to center of chicken if no event)
+    try {
+        let x, y;
+        if (event && typeof event.clientX === 'number') {
+            x = event.clientX;
+            y = event.clientY;
+        } else {
+            const chicken = document.querySelector('.chicken');
+            if (chicken) {
+                const rect = chicken.getBoundingClientRect();
+                x = rect.left + rect.width / 2;
+                y = rect.top + rect.height / 2;
+            } else {
+                x = window.innerWidth / 2;
+                y = window.innerHeight / 2;
+            }
+        }
+        showFloatingText(x, y, `+${formatNumber(gain)}`);
+    } catch (_) {}
+
     saveGame();
 }
 

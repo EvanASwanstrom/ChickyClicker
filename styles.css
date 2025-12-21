@@ -6,6 +6,7 @@ body {
     /* fill image */
     background: url(images/meadow.jpg)   fixed;
     background-size: cover;
+    user-select: none;
 }
 
 /* Main Grid Layout */
@@ -135,4 +136,20 @@ body {
 .store-item:hover {
     background: #ddd;
 
+}
+
+/* Floating gain text */
+.float-text {
+    position: fixed;
+    z-index: 1000;
+    pointer-events: none;
+    color: #2e7d32; /* green */
+    font-weight: bold;
+    text-shadow: 0 1px 0 #fff;
+    animation: floatUp 800ms ease-out forwards;
+}
+
+@keyframes floatUp {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-40px) scale(1.1); }
 }
