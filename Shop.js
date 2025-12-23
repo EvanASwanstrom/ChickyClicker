@@ -89,22 +89,22 @@ function updateAllUI() {
 }
 
 function updateUpgradeUI() {
-    document.getElementById('DealerDiscountCost').textContent = formatNumber(getDealerDiscountCost());
+    document.getElementById('DealerDiscountCost').textContent = "$" + formatNumber(getDealerDiscountCost());
     document.getElementById('DealerDiscountLevel').textContent = (DealerDiscountLevel * 5) + '%';
     
-    document.getElementById('BreederDiscountCost').textContent = formatNumber(getBreederDiscountCost());
+    document.getElementById('BreederDiscountCost').textContent = "$" + formatNumber(getBreederDiscountCost());
     document.getElementById('BreederDiscountLevel').textContent = BreederDiscountLevel * 5 + '%';
     
-    document.getElementById('MarketDiscountCost').textContent = formatNumber(getMarketDiscountCost());
+    document.getElementById('MarketDiscountCost').textContent = "$" + formatNumber(getMarketDiscountCost());
     document.getElementById('MarketDiscountLevel').textContent = MarketDiscountLevel * 5 + '%';
     
-    document.getElementById('RanchDiscountCost').textContent = formatNumber(getRanchDiscountCost());
+    document.getElementById('RanchDiscountCost').textContent = "$" + formatNumber(getRanchDiscountCost());
     document.getElementById('RanchDiscountLevel').textContent = RanchDiscountLevel * 5 + '%';
     
-    document.getElementById('MineDiscountCost').textContent = formatNumber(getMineDiscountCost());
+    document.getElementById('MineDiscountCost').textContent = "$" + formatNumber(getMineDiscountCost());
     document.getElementById('MineDiscountLevel').textContent = MineDiscountLevel * 5 + '%';
     
-    document.getElementById('FactoryDiscountCost').textContent = formatNumber(getFactoryDiscountCost());
+    document.getElementById('FactoryDiscountCost').textContent = "$" + formatNumber(getFactoryDiscountCost());
     document.getElementById('FactoryDiscountLevel').textContent = FactoryDiscountLevel * 5 + '%';
 }
 
@@ -260,7 +260,7 @@ function buyDiscount(name) {
     const discountLevel = window[name + 'DiscountLevel'];
     const count = window[name + 'Count'];
     
-    document.getElementById(name + 'DiscountCost').textContent = formatNumber(discount.getCost());
+    document.getElementById(name + 'DiscountCost').textContent = "$" + formatNumber(discount.getCost());
     document.getElementById(name + 'DiscountLevel').textContent = discountLevel * 5 + '%';
     document.getElementById('ChickenCount').textContent = formatNumber(ChickenCount) + ' Chickens';
     

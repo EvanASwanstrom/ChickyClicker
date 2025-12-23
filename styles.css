@@ -136,6 +136,16 @@ body {
     justify-content: center ;
 }
 
+.store-header a {
+    color: #ece17a;
+    text-decoration: none;
+}
+
+.store-header a:visited {
+    color: #ece17a;
+    text-decoration: none;
+}
+
 .store-items {
     display: grid;
     gap: 10px;
@@ -227,6 +237,7 @@ body {
     100% { opacity: 0; transform: translateY(-40px) scale(1.1); }
 }
 
+
 /* Toggle button for switching panels */
 .toggle-button {
     background: #c5e9e1;
@@ -248,3 +259,5 @@ body {
 .toggle-button:active {
     transform: scale(0.98);
 }
+
+

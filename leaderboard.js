@@ -140,7 +140,7 @@ function updateLeaderboardUI(entries) {
     // Build the HTML
     let html = '<ol>';
     //loops 5 times
-    entries.slice(0, 5).forEach((entry, index) => {
+    entries.slice(0, 10).forEach((entry, index) => {
         // Format the numbers for display
         const chickens = formatNumber(new Decimal(entry.chickens));
         const rate = new Decimal(entry.rate).toFixed(1);
@@ -161,7 +161,7 @@ function updateLeaderboardUI(entries) {
     // shows slot 6 as current player and rank
     const currentPlayerIndex = entries.findIndex(e => e.playerId === playerId);
     //console.log(entries);
-    if (currentPlayerIndex >= 5) {
+    if (currentPlayerIndex > 10) {
         const currentPlayer = entries[currentPlayerIndex];
         const chickens = formatNumber(new Decimal(currentPlayer.chickens));
         const rate = new Decimal(currentPlayer.rate).toFixed(1);
