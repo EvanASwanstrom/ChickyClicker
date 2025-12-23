@@ -10,46 +10,7 @@
 <body>
 <div class="container">
     
-    
-<!-- Left Panel -->
-<div class="left-panel">
-    <div class="store-header"><span>Item</span><span>Cost</span><span>Discount</span></div>
-    <div class="store-items">
-        <div class="store-item" onclick="buyDiscount('Dealer')">
-            Dealer Discount <span id="DealerDiscountCost">100</span><span id="DealerDiscountLevel">0%</span>
-        </div>
-        <div class="store-item" onclick="buyDiscount('Breeder')">
-            Breeder Discount <span id="BreederDiscountCost">500</span><span id="BreederDiscountLevel">0%</span>
-        </div>
-        <div class="store-item" onclick="buyDiscount('Market')">
-            Market Discount <span id="MarketDiscountCost">2000</span><span id="MarketDiscountLevel">0%</span>
-        </div>
-        <div class="store-item" onclick="buyDiscount('Ranch')">
-            Ranch Discount <span id="RanchDiscountCost">5000</span><span id="RanchDiscountLevel">0%</span>
-        </div>
-        <div class="store-item" onclick="buyDiscount('Mine')">
-            Mine Discount <span id="MineDiscountCost">20000</span><span id="MineDiscountLevel">0%</span>
-        </div>
-        <div class="store-item" onclick="buyDiscount('Factory')">
-            Factory Discount <span id="FactoryDiscountCost">100000</span><span id="FactoryDiscountLevel">0%</span>
-        </div>
-    </div>
-
-
-    <div class="leaderboard-container">
-        <h2>Global Leaderboard</h2>
-            <div id="leaderboard">
-                <p>Loading...</p>
-            </div>
-        <div>
-            <button onclick="submitScoreManually()">Update Score</button>
-            <button onclick="changePlayerName()">Change Name</button>
-        </div>
-    </div>
-</div>
-
-
-    <!-- Middle Panel -->
+    <!-- Left: Chicken Clicker -->
     <div class="middle-panel">
         <div class="chicken" onclick="incrementScore(event)">
         </div>
@@ -59,18 +20,81 @@
         </div>
     </div>
 
-    <!-- Right Panel -->
-    <div class="right-panel">
-        <div class="store-header"><span>Item</span><span>Cost</span><span>Amount</span></div>
+    <!-- Right: Buildings Panel (default visible) -->
+    <div class="right-panel" id="buildingsPanel">
+        <button class="toggle-button" onclick="togglePanel()">Discounts & Leaderboard</button>
+        <div class="store-header">Building Shop</div>
         <div class="store-items">
-            <div class="store-item" onclick="buyUpgrade('Dealer')">Dealers<span id="DealerCost">15</span><span id="DealerCount">0</span></div>
-            <div class="store-item" onclick="buyUpgrade('Breeder')">Breeders<span id="BreederCost">0</span><span id="BreederCount">0</span></div>
-            <div class="store-item" onclick="buyUpgrade('Market')">Markets<span id="MarketCost">0</span><span id="MarketCount">0</span></div>
-            <div class="store-item" onclick="buyUpgrade('Ranch')">Ranches<span id="RanchCost">0</span><span id="RanchCount">0</span></div>
-            <div class="store-item" onclick="buyUpgrade('Mine')">Mines<span id="MineCost">0</span><span id="MineCount">0</span></div>
-            <div class="store-item" onclick="buyUpgrade('Factory')">Factories<span id="FactoryCost">0</span><span id="FactoryCount">0</span></div>
+            <div class="store-item" onclick="buyUpgrade('Dealer')">
+                <span class="item-name"><span style="text-decoration: underline">Dealers (0.1/s)</span></span>
+                <span class="item-cost" id="DealerCost">$15</span>
+                <span class="item-count" id="DealerCount">0</span>
+            </div>
+            <div class="store-item" onclick="buyUpgrade('Breeder')">
+                <span class="item-name"><span style="text-decoration: underline">Breeders (0.5/s)</span></span>
+                <span class="item-cost" id="BreederCost">$100</span>
+                <span class="item-count" id="BreederCount">0</span>
+            </div>
+            <div class="store-item" onclick="buyUpgrade('Market')">
+                <span class="item-name"><span style="text-decoration: underline">Markets (2/s)</span></span>
+                <span class="item-cost" id="MarketCost">$500</span>
+                <span class="item-count" id="MarketCount">0</span>
+            </div>
+            <div class="store-item" onclick="buyUpgrade('Ranch')">
+                <span class="item-name"><span style="text-decoration: underline">Ranches (5/s)</span></span>
+                <span class="item-cost" id="RanchCost">$2000</span>
+                <span class="item-count" id="RanchCount">0</span>
+            </div>
+            <div class="store-item" onclick="buyUpgrade('Mine')">
+                <span class="item-name"><span style="text-decoration: underline">Mines (10/s)</span></span>
+                <span class="item-cost" id="MineCost">$10000</span>
+                <span class="item-count" id="MineCount">0</span>
+            </div>
+            <div class="store-item" onclick="buyUpgrade('Factory')">
+                <span class="item-name"><span style="text-decoration: underline">Factories (50/s)</span></span>
+                <span class="item-cost" id="FactoryCost">$50000</span>
+                <span class="item-count" id="FactoryCount">0</span>
+            </div>
         </div>
     </div>
+
+    <!-- Right: Discounts & Leaderboard Panel (initially hidden) -->
+    <div class="left-panel hidden" id="discountsPanel">
+        <button class="toggle-button" onclick="togglePanel()">Buildings</button>
+        <div class="store-header">Upgrade Shop</div>
+        <div class="store-items">
+            <div class="store-item" onclick="buyDiscount('Dealer')">
+                Dealer Discount <span id="DealerDiscountCost">100</span><span id="DealerDiscountLevel">0%</span>
+            </div>
+            <div class="store-item" onclick="buyDiscount('Breeder')">
+                Breeder Discount <span id="BreederDiscountCost">500</span><span id="BreederDiscountLevel">0%</span>
+            </div>
+            <div class="store-item" onclick="buyDiscount('Market')">
+                Market Discount <span id="MarketDiscountCost">2000</span><span id="MarketDiscountLevel">0%</span>
+            </div>
+            <div class="store-item" onclick="buyDiscount('Ranch')">
+                Ranch Discount <span id="RanchDiscountCost">5000</span><span id="RanchDiscountLevel">0%</span>
+            </div>
+            <div class="store-item" onclick="buyDiscount('Mine')">
+                Mine Discount <span id="MineDiscountCost">20000</span><span id="MineDiscountLevel">0%</span>
+            </div>
+            <div class="store-item" onclick="buyDiscount('Factory')">
+                Factory Discount <span id="FactoryDiscountCost">100000</span><span id="FactoryDiscountLevel">0%</span>
+            </div>
+        </div>
+
+        <div class="leaderboard-container">
+            <h2>Global Leaderboard</h2>
+                <div id="leaderboard">
+                    <p>Loading...</p>
+                </div>
+            <div>
+                <button onclick="submitScoreManually()">Update Score</button>
+                <button onclick="changePlayerName()">Change Name</button>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <!-- Firebase SDK -->

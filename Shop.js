@@ -67,23 +67,23 @@ function updateAllUI() {
     document.getElementById('ChickenCount').textContent = formatNumber(ChickenCount) + ' Chickens';
     document.getElementById('ChickenRate').textContent = 'per second: ' + ChickenRate.toFixed(1);
 
-    document.getElementById('DealerCount').textContent = DealerCount;
-    document.getElementById('DealerCost').textContent = formatNumber(getDealerCost());
+    document.getElementById('DealerCount').textContent = "Owned: " + DealerCount;
+    document.getElementById('DealerCost').textContent = "$" + formatNumber(getDealerCost());
     
-    document.getElementById('BreederCount').textContent = BreederCount;
-    document.getElementById('BreederCost').textContent = formatNumber(getBreederCost());
+    document.getElementById('BreederCount').textContent = "Owned: " + BreederCount;
+    document.getElementById('BreederCost').textContent = "$" +  formatNumber(getBreederCost());
     
-    document.getElementById('MarketCount').textContent = MarketCount;
-    document.getElementById('MarketCost').textContent = formatNumber(getMarketCost());
+    document.getElementById('MarketCount').textContent = "Owned: " + MarketCount;
+    document.getElementById('MarketCost').textContent = "$" + formatNumber(getMarketCost());
     
-    document.getElementById('RanchCount').textContent = RanchCount;
-    document.getElementById('RanchCost').textContent = formatNumber(getRanchCost());
+    document.getElementById('RanchCount').textContent = "Owned: " + RanchCount;
+    document.getElementById('RanchCost').textContent = "$" + formatNumber(getRanchCost());
     
-    document.getElementById('MineCount').textContent = MineCount;
-    document.getElementById('MineCost').textContent = formatNumber(getMineCost());
+    document.getElementById('MineCount').textContent = "Owned: " + MineCount;
+    document.getElementById('MineCost').textContent = "$" + formatNumber(getMineCost());
     
-    document.getElementById('FactoryCount').textContent = FactoryCount;
-    document.getElementById('FactoryCost').textContent = formatNumber(getFactoryCost());
+    document.getElementById('FactoryCount').textContent = "Owned: " + FactoryCount;
+    document.getElementById('FactoryCost').textContent = "$" + formatNumber(getFactoryCost());
 
     updateUpgradeUI();
 }
@@ -172,8 +172,11 @@ function incrementScore(event) {
 
 // Update shop UI
 function updateShopUI(name, count, cost) {
-    document.getElementById(name + 'Count').textContent = count;
-    document.getElementById(name + 'Cost').textContent = formatNumber(cost);
+    // Support new three-line blueprint formatting
+    const countEl = document.getElementById(name + 'Count');
+    const costEl = document.getElementById(name + 'Cost');
+    if (countEl) countEl.textContent = 'Owned: ' + count;
+    if (costEl) costEl.textContent = '$' + formatNumber(cost);
     document.getElementById('ChickenCount').textContent = formatNumber(ChickenCount) + ' Chickens';
     document.getElementById('ChickenRate').textContent = 'per second: ' + ChickenRate.toFixed(1);
 }
@@ -250,7 +253,9 @@ function buyDiscount(name) {
     }
 
     ChickenCount = ChickenCount.minus(cost);
-    window[name + 'DiscountLevel']++; 
+    window[name + 'DiscountLevel']++;
+
+
     
     const discountLevel = window[name + 'DiscountLevel'];
     const count = window[name + 'Count'];
@@ -271,3 +276,12 @@ function killCookies() {
 
 // Auto-save every 10 seconds
 setInterval(saveGame, 10000);
+
+// Toggle between Buildings and Discounts panels
+function togglePanel() {
+    const buildingsPanel = document.getElementById('buildingsPanel');
+    const discountsPanel = document.getElementById('discountsPanel');
+    
+    buildingsPanel.classList.toggle('hidden');
+    discountsPanel.classList.toggle('hidden');
+}
