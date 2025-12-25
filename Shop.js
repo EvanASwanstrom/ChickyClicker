@@ -277,7 +277,7 @@ function killCookies() {
 // Auto-save every 10 seconds
 setInterval(saveGame, 10000);
 
-// Toggle between Buildings and Discounts panels
+// Toggle between Buildings, Skill Tree, and Discounts panels
 function togglePanel() {
     const buildingsPanel = document.getElementById('buildingsPanel');
     const discountsPanel = document.getElementById('discountsPanel');
