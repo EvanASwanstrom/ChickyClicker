@@ -200,4 +200,4 @@ setInterval(() => {
         location.reload();
     }
     
-}, 60000); // Check every minute
+}, 1000); // Check every minute
