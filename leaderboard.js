@@ -39,7 +39,7 @@ function promptForName() {
 function submitScore() {
     // Safety checks: make sure all required data exists
     if (!playerName) {
-        return;
+        promptForName();
     }
     
     if (typeof ChickenCount === 'undefined' || typeof ChickenRate === 'undefined') {

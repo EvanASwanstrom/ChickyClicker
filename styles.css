@@ -41,9 +41,11 @@ body {
 .chicken {
     width: 600px;
     height: 600px;
-    background: url('images/Chicken_Main.png') no-repeat;
+    background: var(--chicken-image);  
+    background-repeat: no-repeat;
+
     background-size: 90%;
-    background-position: -5px;
+    background-position: 0px;
     border-radius: 50%;
     cursor: pointer;
     transition: transform 0.1s ease;
@@ -169,6 +171,7 @@ body {
     transform-origin: 50% 12px;
     transition: transform 0.12s ease;
     overflow: visible; /* ensure pin is never clipped */
+    /* adds shadow */
 }
 
 .store-item:hover {
@@ -260,4 +263,25 @@ body {
     transform: scale(0.98);
 }
 
+.chicken-ager {
+    background: #ffeb3b;
+    border: 2px solid #fbc02d;
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Indie Flower', cursive;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
 
+.age-requirements {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.3;
+}

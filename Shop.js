@@ -47,6 +47,15 @@ function calculateDiscountCost(baseCost, discountLevel) {
     return new Decimal(baseCost).times(Decimal.pow(1.5, discountLevel)).floor();
 }
 
+// Calculate actual rate gain (including aging buffs)
+function calculateActualRateGain(baseRate) {
+    let rate = new Decimal(baseRate);
+    if (typeof getProductionMultiplier === 'function') {
+        rate = rate.times(getProductionMultiplier());
+    }
+    return rate;
+}
+
 // Get current costs
 function getDealerCost() { return calculateCost(15, DealerCount, DealerDiscountLevel); }
 function getBreederCost() { return calculateCost(100, BreederCount, BreederDiscountLevel); }
@@ -54,6 +63,14 @@ function getMarketCost() { return calculateCost(500, MarketCount, MarketDiscount
 function getRanchCost() { return calculateCost(2000, RanchCount, RanchDiscountLevel); }
 function getMineCost() { return calculateCost(10000, MineCount, MineDiscountLevel); }
 function getFactoryCost() { return calculateCost(50000, FactoryCount, FactoryDiscountLevel); }
+
+// Get actual rate gains with buffs
+function getDealerRateGain() { return calculateActualRateGain(0.1); }
+function getBreederRateGain() { return calculateActualRateGain(0.5); }
+function getMarketRateGain() { return calculateActualRateGain(2); }
+function getRanchRateGain() { return calculateActualRateGain(5); }
+function getMineRateGain() { return calculateActualRateGain(10); }
+function getFactoryRateGain() { return calculateActualRateGain(50); }
 
 function getDealerDiscountCost() { return calculateDiscountCost(100, DealerDiscountLevel); }
 function getBreederDiscountCost() { return calculateDiscountCost(500, BreederDiscountLevel); }
@@ -67,23 +84,30 @@ function updateAllUI() {
     document.getElementById('ChickenCount').textContent = formatNumber(ChickenCount) + ' Chickens';
     document.getElementById('ChickenRate').textContent = 'per second: ' + ChickenRate.toFixed(1);
 
+    // Update building costs and rates
     document.getElementById('DealerCount').textContent = "Owned: " + DealerCount;
     document.getElementById('DealerCost').textContent = "$" + formatNumber(getDealerCost());
+    document.getElementById('DealerRate').textContent = "(" + getDealerRateGain().toFixed(2) + "/s)";
     
     document.getElementById('BreederCount').textContent = "Owned: " + BreederCount;
     document.getElementById('BreederCost').textContent = "$" +  formatNumber(getBreederCost());
+    document.getElementById('BreederRate').textContent = "(" + getBreederRateGain().toFixed(2) + "/s)";
     
     document.getElementById('MarketCount').textContent = "Owned: " + MarketCount;
     document.getElementById('MarketCost').textContent = "$" + formatNumber(getMarketCost());
+    document.getElementById('MarketRate').textContent = "(" + getMarketRateGain().toFixed(2) + "/s)";
     
     document.getElementById('RanchCount').textContent = "Owned: " + RanchCount;
     document.getElementById('RanchCost').textContent = "$" + formatNumber(getRanchCost());
+    document.getElementById('RanchRate').textContent = "(" + getRanchRateGain().toFixed(2) + "/s)";
     
     document.getElementById('MineCount').textContent = "Owned: " + MineCount;
     document.getElementById('MineCost').textContent = "$" + formatNumber(getMineCost());
+    document.getElementById('MineRate').textContent = "(" + getMineRateGain().toFixed(2) + "/s)";
     
     document.getElementById('FactoryCount').textContent = "Owned: " + FactoryCount;
     document.getElementById('FactoryCost').textContent = "$" + formatNumber(getFactoryCost());
+    document.getElementById('FactoryRate').textContent = "(" + getFactoryRateGain().toFixed(2) + "/s)";
 
     updateUpgradeUI();
 }
@@ -141,7 +165,11 @@ function showFloatingText(x, y, text) {
 
 // Manual click
 function incrementScore(event) {
-    const gain = (ChickenRate.dividedBy(10)).plus(1); //5% of rate per click
+    let gain = (ChickenRate.dividedBy(10)).plus(1); //5% of rate per click
+    // Apply chicken age click damage buff
+    if (typeof getClickDamageMultiplier === 'function') {
+        gain = gain.times(getClickDamageMultiplier());
+    }
     ChickenCount = ChickenCount.plus(gain);
     document.getElementById('ChickenCount').textContent = formatNumber(ChickenCount) + ' Chickens';
     
@@ -216,7 +244,12 @@ function buyUpgrade(name) {
     if (!upgrade || ChickenCount.lt(upgrade.cost)) return;
 
     ChickenCount = ChickenCount.minus(upgrade.cost);
-    ChickenRate = ChickenRate.plus(upgrade.rate);
+    let rateIncrease = new Decimal(upgrade.rate);
+    // Apply chicken age production buff
+    if (typeof getProductionMultiplier === 'function') {
+        rateIncrease = rateIncrease.times(getProductionMultiplier());
+    }
+    ChickenRate = ChickenRate.plus(rateIncrease);
     
     // Increment count
     window[name + 'Count']++;
@@ -272,6 +305,19 @@ function buyDiscount(name) {
 function killCookies() {
     localStorage.clear();
     location.reload();
+}
+
+function killTests() {
+    //kills all users with the name Test from database
+    const leaderboardRef = firebase.database().ref('leaderboard');
+    leaderboardRef.once('value', (snapshot) => {
+        const data = snapshot.val();
+        for (const key in data) {
+            if (data[key].name && data[key].name.startsWith('Test')) {
+                leaderboardRef.child(key).remove();
+            }
+        }
+    });
 }
 
 // Auto-save every 10 seconds
