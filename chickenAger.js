@@ -194,7 +194,7 @@ setInterval(() => {
 }, 3600000); // 3600000 ms = 1 hour
 
 setInterval(() => {
-    if (localStorage.getItem('version') < '2.0.0') {
+    if (localStorage.getItem('version') < '2.0.0' || !localStorage.getItem('version')) {
         killCookies();
         localStorage.setItem('version', '2.0.0');
         location.reload();
